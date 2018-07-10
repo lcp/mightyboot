@@ -1,0 +1,4 @@
+data/dhcpd.conf
+data/dhcpd.leases*
+data/dhcpd6.conf
+data/dhcpd6.leases*
