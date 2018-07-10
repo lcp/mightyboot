@@ -9,7 +9,7 @@ subnet6 __IP6_PREFIX__/64 {
 	}
 
 	subclass "PXEClient" "PXEClient" {
-		option dhcp6.bootfile-url "tftp://[__IP6_PREFIX__1]/TEST/EFI/BOOT/bootx64.efi";
+		option dhcp6.bootfile-url "tftp://[__IP6_PREFIX__1]/__PXE_URI__";
 	}
 
 	class "HTTPClient" {
@@ -18,8 +18,7 @@ subnet6 __IP6_PREFIX__/64 {
 
 	subclass "HTTPClient" "HTTPClient" {
 		option dhcp6.vendor-class 0 10 "HTTPClient";
-		#option dhcp6.bootfile-url "https://[2001:db8:f00f:cafe::1]/SLE15/EFI/BOOT/bootx64.efi";
-		option dhcp6.bootfile-url "https://www.httpboot.local/SLE15/EFI/BOOT/bootx64.efi";
+		option dhcp6.bootfile-url "__HTTPBOOT6_URI__";
 		option dhcp6.name-servers __IP6_PREFIX__1;
 	}
 }

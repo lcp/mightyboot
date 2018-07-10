@@ -6,3 +6,12 @@ IP4_PREFIX=192.168.110
 
 # The prefix of IPv6 addresses
 IP6_PREFIX=2001:db8:f00f:cafe::
+
+# The URI of PXE file
+PXE_URI=/SLE15/EFI/BOOT/bootx64.efi
+
+# The URI for HTTPBoot IPv4
+HTTPBOOT_URI=http://www.httpboot.local/SLE15/EFI/BOOT/bootx64.efi
+
+# The URI for HTTPBoot IPv6
+HTTPBOOT6_URI=http://www.httpboot.local/SLE15/EFI/BOOT/bootx64.efi

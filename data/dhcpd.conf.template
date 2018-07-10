@@ -10,13 +10,11 @@ subnet __IP4_PREFIX__.0 netmask 255.255.255.0 {
     class "pxeclients" {
       match if substring (option vendor-class-identifier, 0, 9) = "PXEClient";
       next-server __IP4_PREFIX__.1;
-      filename "/SLE15/EFI/BOOT/bootx64.efi";
+      filename "__PXE_URI__";
     }
     class "httpclients" {
       match if substring (option vendor-class-identifier, 0, 10) = "HTTPClient";
       option vendor-class-identifier "HTTPClient";
-      #filename "http://192.168.110.1/SLE15/EFI/BOOT/bootx64.efi";
-      #filename "https://192.168.110.1/SLE15/EFI/BOOT/bootx64.efi";
-      filename "https://www.httpboot.local/SLE15/EFI/BOOT/bootx64.efi";
+      filename "__HTTPBOOT_URI__";
     }
 }

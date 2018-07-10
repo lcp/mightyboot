@@ -14,6 +14,18 @@ if [ -z "$IP4_PREFIX" ]; then
 	exit
 fi
 
+# Exit if there is no assigned PXE URI
+if [ -z "$PXE_URI" ]; then
+	echo "No PXE URI"
+	exit
+fi
+
+# Exit if there is no assigned HTTPBoot URI
+if [ -z "$HTTPBOOT_URI" ]; then
+	echo "No HTTPBoot URI"
+	exit
+fi
+
 # loop until interface is found, or we give up
 NEXT_WAIT_TIME=1
 until [ -e "/sys/class/net/$IFACE" ] || [ $NEXT_WAIT_TIME -eq 4 ]; do
@@ -41,7 +53,10 @@ fi
 
 dhcpd_conf="$data_dir/dhcpd.conf"
 
-sed "s/__IP4_PREFIX__/$IP4_PREFIX/g" $dhcpd_tmp > $dhcpd_conf
+sed "s,__IP4_PREFIX__,$IP4_PREFIX,g
+     s,__PXE_URI__,$PXE_URI,g
+     s,__HTTPBOOT_URI__,$HTTPBOOT_URI,g" \
+    $dhcpd_tmp > $dhcpd_conf
 
 [ -e "$data_dir/dhcpd.leases" ] || touch "$data_dir/dhcpd.leases"
 

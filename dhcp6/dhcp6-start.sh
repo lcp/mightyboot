@@ -14,6 +14,18 @@ if [ -z "$IP6_PREFIX" ]; then
 	exit
 fi
 
+# Exit if there is no assigned PXE URI
+if [ -z "$PXE_URI" ]; then
+	echo "No PXE URI"
+	exit
+fi
+
+# Exit if there is no assigned HTTPBoot6 URI
+if [ -z "$HTTPBOOT6_URI" ]; then
+	echo "No HTTPBoot6 URI"
+	exit
+fi
+
 # loop until interface is found, or we give up
 NEXT_WAIT_TIME=1
 until [ -e "/sys/class/net/$IFACE" ] || [ $NEXT_WAIT_TIME -eq 4 ]; do
@@ -41,7 +53,10 @@ fi
 
 dhcpd6_conf="$data_dir/dhcpd6.conf"
 
-sed "s/__IP6_PREFIX__/$IP6_PREFIX/g" $dhcpd6_tmp > $dhcpd6_conf
+sed "s,__IP6_PREFIX__,$IP6_PREFIX,g
+     s,__PXE_URI__,$PXE_URI,g
+     s,__HTTPBOOT6_URI__,$HTTPBOOT6_URI,g" \
+    $dhcpd6_tmp > $dhcpd6_conf
 
 [ -e "$data_dir/dhcpd6.leases" ] || touch "$data_dir/dhcpd6.leases"
 
