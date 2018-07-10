@@ -1,0 +1,14 @@
+version: '3'
+services:
+        dhcp:
+                build: ./dhcp
+                env_file: ./env
+                volumes:
+                        - ./data:/data
+                network_mode: "host"
+        dhcp6:
+                build: ./dhcp6
+                env_file: ./env
+                volumes:
+                        - ./data:/data
+                network_mode: "host"
