@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
         dhcp:
                 build: ./dhcp
@@ -18,4 +18,14 @@ services:
                 volumes:
                         - ./data/dnsmasq:/data
                         - ./data/tftproot:/srv/tftproot:ro
+                network_mode: "host"
+        lihgttpd:
+                build: ./lighttpd
+                env_file: ./env
+                volumes:
+                        - ./data/lighttpd/:/conf:ro
+                        - type: bind
+                          source: ./data/www/htdocs
+                          target: /srv/www/htdocs
+                          read_only: "yes"
                 network_mode: "host"
