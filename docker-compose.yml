@@ -4,11 +4,11 @@ services:
                 build: ./dhcp
                 env_file: ./env
                 volumes:
-                        - ./data:/data
+                        - ./data/dhcp:/data
                 network_mode: "host"
         dhcp6:
                 build: ./dhcp6
                 env_file: ./env
                 volumes:
-                        - ./data:/data
+                        - ./data/dhcp6:/data
                 network_mode: "host"

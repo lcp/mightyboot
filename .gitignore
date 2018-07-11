@@ -1,4 +1,5 @@
-data/dhcpd.conf
-data/dhcpd.leases*
-data/dhcpd6.conf
-data/dhcpd6.leases*
+*.swp
+data/dhcp/dhcpd.conf
+data/dhcp/dhcpd.leases*
+data/dhcp6/dhcpd6.conf
+data/dhcp6/dhcpd6.leases*
