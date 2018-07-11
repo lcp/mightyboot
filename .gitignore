@@ -3,3 +3,6 @@ data/dhcp/dhcpd.conf
 data/dhcp/dhcpd.leases*
 data/dhcp6/dhcpd6.conf
 data/dhcp6/dhcpd6.leases*
+data/dnsmasq/hosts.conf
+data/tftproot/*
+!data/tftproot/README

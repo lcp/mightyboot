@@ -12,3 +12,10 @@ services:
                 volumes:
                         - ./data/dhcp6:/data
                 network_mode: "host"
+        dnsmasq:
+                build: ./dnsmasq
+                env_file: ./env
+                volumes:
+                        - ./data/dnsmasq:/data
+                        - ./data/tftproot:/srv/tftproot:ro
+                network_mode: "host"
