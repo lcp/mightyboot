@@ -1,2 +1,2 @@
-__IP4_PREFIX__.1 www.httpboot.local
-__IP6_PREFIX__1 www.httpboot.local
+__IP4_PREFIX__.1 __SERVER_NAME__
+__IP6_PREFIX__1 __SERVER_NAME__

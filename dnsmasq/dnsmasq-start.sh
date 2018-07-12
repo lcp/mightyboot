@@ -20,6 +20,12 @@ if [ -z "$IP6_PREFIX" ]; then
 	exit
 fi
 
+# Exit if there is no assigned SERVER_NAME
+if [ -z "$SERVER_NAME" ]; then
+	echo "No Server Name"
+	exit
+fi
+
 # loop until interface is found, or we give up
 NEXT_WAIT_TIME=1
 until [ -e "/sys/class/net/$IFACE" ] || [ $NEXT_WAIT_TIME -eq 4 ]; do
@@ -54,7 +60,8 @@ fi
 hosts_conf="$data_dir/hosts.conf"
 
 sed "s,__IP4_PREFIX__,$IP4_PREFIX,g
-     s,__IP6_PREFIX__,$IP6_PREFIX,g" \
+     s,__IP6_PREFIX__,$IP6_PREFIX,g
+     s,__SERVER_NAME__,$SERVER_NAME,g" \
     $hosts_tmp > $hosts_conf
 
 container_id=$(grep docker /proc/self/cgroup | sort -n | head -n 1 | cut -d: -f3 | cut -d/ -f3)
