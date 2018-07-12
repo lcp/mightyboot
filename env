@@ -1,17 +1,25 @@
 # The target network interface
-IFACE=tap0
+# ex: eth0
+IFACE=
 
 # The prefix of IPv4 addresses
-IP4_PREFIX=192.168.110
+# ex: 192.168.110
+IP4_PREFIX=
 
 # The prefix of IPv6 addresses
-IP6_PREFIX=2001:db8:f00f:cafe::
+# ex: 2001:db8:f00f:cafe::
+IP6_PREFIX=
 
-# The URI of PXE file
-PXE_URI=/SLE15/EFI/BOOT/bootx64.efi
+# The path to the PXE bootloader
+# ex: /path/to/boot.efi
+PXE_URI=
 
-# The URI for HTTPBoot IPv4
-HTTPBOOT_URI=http://www.httpboot.local/SLE15/EFI/BOOT/bootx64.efi
+# The URI to the HTTPBoot IPv4 bootloader
+# ex: http://192.168.110.1/path/to/boot.efi or
+#     http://www.httpboot.local/path/to/boot.efi
+HTTPBOOT_URI=
 
-# The URI for HTTPBoot IPv6
-HTTPBOOT6_URI=http://www.httpboot.local/SLE15/EFI/BOOT/bootx64.efi
+# The URI to the HTTPBoot IPv6 bootloader
+# ex: http://[2001:db8:f00f:cafe::1]/path/to/boot.efi or
+#     http://www.httpboot.local/path/to/boot.efi
+HTTPBOOT6_URI=
