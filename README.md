@@ -70,6 +70,10 @@ to "http://SERVER_NAME/EFI/BOOT/bootx64.efi".
 
 NOTE: Remember to adjust the paths in *EFI/BOOT/grub.cfg*
 
+### Grub2
+
+There is a grub.cfg example in *data* in case you need a reference of grub.cfg.
+
 ## Launch Services
 
 Just make sure that your system already installs docker and docker-compose and
