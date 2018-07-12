@@ -1,3 +1,7 @@
+*~
+*.bak
+*.pem
+*.key
 *.swp
 data/dhcp/dhcpd.conf
 data/dhcp/dhcpd.leases*
