@@ -27,3 +27,11 @@ HTTPBOOT_URI=
 # ex: http://[2001:db8:f00f:cafe::1]/path/to/boot.efi or
 #     http://www.httpboot.local/path/to/boot.efi
 HTTPBOOT6_URI=
+
+# Whether to enable HTTPS or not
+# TRUE/FALSE
+HTTPS=FALSE
+
+# The key for HTTPS in data/lighttpd/
+# ex: server.pem
+SERVER_KEY=

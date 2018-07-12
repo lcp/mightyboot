@@ -15,7 +15,22 @@ if [ ! -d "$conf_dir" ]; then
 	exit 1
 fi
 
-lighttpd_conf="$conf_dir/lighttpd.conf"
+if [ "$HTTPS" == "TRUE" ]; then
+	lighttpd_conf="$conf_dir/lighttpd-ssl.conf"
+
+	if [ -z "$SERVER_KEY" ]; then
+		echo "No Assigned Server Key"
+		exit 1
+	fi
+	server_key=$conf_dir/$SERVER_KEY
+	if [ ! -r "$server_key" ]; then
+		echo "Please ensure '$server_key' exists and is readable"
+		exit 1
+	fi
+	cp $server_key /etc/ssl/private/
+else
+	lighttpd_conf="$conf_dir/lighttpd.conf"
+fi
 if [ ! -r "$lighttpd_conf" ]; then
 	echo "Please ensure '$lighttpd_conf' exists and is readable."
 	echo "Run the container with arguments 'man lighttpd.conf' if you need help with creating the configuration."

@@ -23,6 +23,8 @@ config files accordingly. Here are the variables:
 * **SERVER_NAME** - the domain name of the server
 * **HTTPBOOT_URI** - the IPv4 HTTP URI to the UEFI bootloader
 * **HTTPBOOT6_URI** - the IPv6 HTTP URI to the UEFI bootloader
+* **HTTPS** - whether to enable HTTPS or not
+* **SERVER_KEY** - the encrypt key for HTTPS
 
 ### Network Interface
 
@@ -70,6 +72,20 @@ to "http://SERVER_NAME/EFI/BOOT/bootx64.efi".
 
 NOTE: Remember to adjust the paths in *EFI/BOOT/grub.cfg*
 
+### HTTPS
+
+To enable HTTPS support in mightyboot, you need a server key.
+Please refer [SSL Support for HTTP Server](https://en.opensuse.org/UEFI_HTTPBoot_with_OVMF#SSL_Support_for_HTTP_Server.28Optional.29)
+to create a test key if necessary. The server key **must** contain both
+the public certificate and the private key.
+
+After creating the server key, copy the server key file to *data/lighttpd*.
+Then, set **HTTPS** in **env** to **TRUE** and assign the file name of the
+server key to **SERVER_KEY**. For example:
+
+    HTTPS=TRUE
+    SERVER_KEY=server.pem
+
 ### Grub2
 
 There is a grub.cfg example in *data* in case you need a reference of grub.cfg.
@@ -79,7 +95,7 @@ There is a grub.cfg example in *data* in case you need a reference of grub.cfg.
 Just make sure that your system already installs docker and docker-compose and
 run:
 
-  $ docker-compose up
+    $ docker-compose up
 
 This first startup time will be longer since docker-compose has to download
 and build images for the services. Once the images are cached, it will be much
