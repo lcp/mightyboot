@@ -2,6 +2,12 @@
 
 set -e
 
+# Exit if there is no assigned interface
+if [ -z "$IFACE" ]; then
+	echo "No Assigned Interace"
+	exit
+fi
+
 conf_dir="/conf"
 if [ ! -d "$conf_dir" ]; then
 	echo "Please ensure '$conf_dir' folder is available."
