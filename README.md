@@ -12,7 +12,7 @@ All service are run in the **host** network mode.
 
 ## Configuration
 
-The related settings are controlled by the *env* file. There are several
+The related settings are controlled by the **env** file. There are several
 environment variables, and the start-up scripts in the services will adjust the
 config files accordingly. Here are the variables:
 
@@ -76,3 +76,7 @@ Just make sure that your system already installs docker and docker-compose and
 run:
 
   $ docker-compose up
+
+This first startup time will be longer since docker-compose has to download
+and build images for the services. Once the images are cached, it will be much
+faster.
