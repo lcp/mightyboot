@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3'
 services:
         dhcp:
                 build: ./dhcp
@@ -24,8 +24,5 @@ services:
                 env_file: ./env
                 volumes:
                         - ./data/lighttpd/:/conf:ro
-                        - type: bind
-                          source: ./data/www/htdocs
-                          target: /srv/www/htdocs
-                          read_only: "yes"
+                        - ./data/www/htdocs:/srv/www/htdocs:ro
                 network_mode: "host"
