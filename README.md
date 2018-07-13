@@ -63,8 +63,8 @@ domain name.
 Mightyboot mounts *data/www/htdocs* to */srv/www/htdocs* for lighttpd service,
 so the HTTPBoot bootloader has to be installed in *data/www/htdocs*.
 
-There are 2 HTTPBoot variable: **HTTPBOOT_URI**(IPv4) and
-**HTTPBOOT6_URI**(IPv6). Both of them point to the specified bootloader.
+There are 2 HTTPBoot variables: **HTTPBOOT_URI** for IPv4 and
+**HTTPBOOT6_URI** for IPv6. Both of them point to the specified bootloader.
 
 Since HTTP server also can be the installation server of openSUSE/SLE, we can
 copy everything in the installation DVD to *data/www/htdocs/suse* and set the URI
