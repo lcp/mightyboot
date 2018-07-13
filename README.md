@@ -50,7 +50,7 @@ install the pxe bootlader in *data/tftproot* and set **PXE_URI** properly.
 For openSUSE/SLE, we just copy *EFI* and *boot* from openSUSE/SLE DVD image to
 *data/tftproot/opensuse*, and set **PXE_URI** as */opensuse/EFI/BOOT/bootx64.efi*.
 
-NOTE: Remember to adjust the paths in *EFI/BOOT/grub.cfg*
+NOTE: Remember to adjust the paths in *grub.cfg*
 
 ### DNS
 
@@ -67,10 +67,10 @@ There are 2 HTTPBoot variable: **HTTPBOOT_URI**(IPv4) and
 **HTTPBOOT6_URI**(IPv6). Both of them point to the specified bootloader.
 
 Since HTTP server also can be the installation server of openSUSE/SLE, we can
-copy everything in the installation DVD to *data/www/htdocs* and set the URI
-to "http://SERVER_NAME/EFI/BOOT/bootx64.efi".
+copy everything in the installation DVD to *data/www/htdocs/suse* and set the URI
+to "http://SERVER_NAME/suse/EFI/BOOT/bootx64.efi".
 
-NOTE: Remember to adjust the paths in *EFI/BOOT/grub.cfg*
+NOTE: Remember to adjust the paths in *grub.cfg*
 
 ### HTTPS
 
