@@ -1,6 +1,15 @@
 #!/bin/bash
 # A quick setup script to switch the settings between different
 # installation images
+#
+# Before starting the script:
+# - Copy EFI and boot from SLE15 DVD1 to data/tftpboot/SLE15
+# - Copy everything in SLE15 DVD1 to data/www/htdocs/SLE15
+# - Modify data/grub.cfg.example and copy it to
+#   + data/tftpboot/SLE15/EFI/BOOT/grub.cfg
+#   + data/www/htdocs/SLE15/EFI/BOOT/grub.cfg
+#
+# $ ./quick-start sle15
 
 case "$1" in
 	"sle15")
