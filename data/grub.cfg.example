@@ -14,7 +14,7 @@ menuentry 'Installation' --class opensuse --class gnu-linux --class gnu --class 
 menuentry 'Installation IPv6 Only' --class opensuse --class gnu-linux --class gnu --class os {
   set gfxpayload=keep
   echo 'Loading kernel ...'
-  linuxefi $prefix/boot/x86_64/loader/linux install=http://www.httpboot.local/SLE15/ ipv6only=1 ifcfg=*=dhcp6,DHCLIENT6_MODE=managed
+  linuxefi $prefix/boot/x86_64/loader/linux install=http://www.httpboot.local/$prefix/ ipv6only=1 ifcfg=*=dhcp6,DHCLIENT6_MODE=managed
   echo 'Loading initial ramdisk ...'
   initrdefi $prefix/boot/x86_64/loader/initrd
 }
