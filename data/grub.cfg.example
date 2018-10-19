@@ -1,37 +1,48 @@
 timeout=60
 default=0
 
+# The prefix of the image
 prefix=/opensuse
+
+# CPU architecture
 arch=x86_64
+
+# The path to the kernel and initrd
+#  x86_64: $prefix/boot/x86_64/loader/
+#  AArch64: $prefix/boot/aarch64/
+kpath=$prefix/boot/$arch/loader/
+
+# For SLE15, grub2 for AArch64 doesn't support linuxefi/initrdefi,
+# so those two should be replaced with linux/initrd.
 
 menuentry 'Installation' --class opensuse --class gnu-linux --class gnu --class os {
   set gfxpayload=keep
   echo 'Loading kernel ...'
-  linuxefi $prefix/boot/$arch/loader/linux install=http://www.httpboot.local/$prefix/
+  linuxefi $kpath/linux install=https://www.httpboot.local/$prefix/
   echo 'Loading initial ramdisk ...'
-  initrdefi $prefix/boot/$arch/loader/initrd
+  initrdefi $kpath/initrd $kpath/ssl.img
 }
 
 menuentry 'Installation IPv6 Only' --class opensuse --class gnu-linux --class gnu --class os {
   set gfxpayload=keep
   echo 'Loading kernel ...'
-  linuxefi $prefix/boot/$arch/loader/linux install=http://www.httpboot.local/$prefix/ ipv6only=1 ifcfg=*=dhcp6,DHCLIENT6_MODE=managed
+  linuxefi $kpath/linux install=https://www.httpboot.local/$prefix/ ipv6only=1 ifcfg=*=dhcp6,DHCLIENT6_MODE=managed
   echo 'Loading initial ramdisk ...'
-  initrdefi $prefix/boot/$arch/loader/initrd
+  initrdefi $kpath/initrd $kpath/ssl.img
 }
 
 menuentry 'Upgrade' --class opensuse --class gnu-linux --class gnu --class os {
   set gfxpayload=keep
   echo 'Loading kernel ...'
-  linuxefi $prefix/boot/$arch/loader/linux splash=silent upgrade=1 install=http://www.httpboot.local/$prefix/
+  linuxefi $kpath/linux splash=silent upgrade=1 install=https://www.httpboot.local/$prefix/
   echo 'Loading initial ramdisk ...'
-  initrdefi $prefix/boot/$arch/loader/initrd
+  initrdefi $kpath/initrd $kpath/ssl.img
 }
 
 menuentry 'Rescue System' --class opensuse --class gnu-linux --class gnu {
   set gfxpayload=keep
   echo 'Loading kernel ...'
-  linuxefi $prefix/boot/$arch/loader/linux splash=silent rescue=1 install=http://www.httpboot.local/$prefix/
+  linuxefi $kpath/linux splash=silent rescue=1 install=https://www.httpboot.local/$prefix/
   echo 'Loading initial ramdisk ...'
-  initrdefi $prefix/boot/$arch/loader/initrd
+  initrdefi $kpath/initrd $kpath/ssl.img
 }
