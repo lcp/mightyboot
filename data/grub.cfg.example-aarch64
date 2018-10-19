@@ -1,0 +1,37 @@
+timeout=60
+default=0
+
+prefix=/opensuse
+arch=aarch64
+
+menuentry 'Installation' --class opensuse --class gnu-linux --class gnu --class os {
+  set gfxpayload=keep
+  echo 'Loading kernel ...'
+  linux $prefix/boot/$arch/linux install=http://www.httpboot.local/$prefix/
+  echo 'Loading initial ramdisk ...'
+  initrd $prefix/boot/$arch/initrd
+}
+
+menuentry 'Installation IPv6 Only' --class opensuse --class gnu-linux --class gnu --class os {
+  set gfxpayload=keep
+  echo 'Loading kernel ...'
+  linux $prefix/boot/$arch/linux install=http://www.httpboot.local/$prefix/ ipv6only=1 ifcfg=*=dhcp6,DHCLIENT6_MODE=managed
+  echo 'Loading initial ramdisk ...'
+  initrd $prefix/boot/$arch/initrd
+}
+
+menuentry 'Upgrade' --class opensuse --class gnu-linux --class gnu --class os {
+  set gfxpayload=keep
+  echo 'Loading kernel ...'
+  linux $prefix/boot/$arch/linux splash=silent upgrade=1 install=http://www.httpboot.local/$prefix/
+  echo 'Loading initial ramdisk ...'
+  initrd $prefix/boot/$arch/initrd
+}
+
+menuentry 'Rescue System' --class opensuse --class gnu-linux --class gnu {
+  set gfxpayload=keep
+  echo 'Loading kernel ...'
+  linux $prefix/boot/$arch/linux splash=silent rescue=1 install=http://www.httpboot.local/$prefix/
+  echo 'Loading initial ramdisk ...'
+  initrd $prefix/boot/$arch/initrd
+}
