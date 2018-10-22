@@ -39,7 +39,6 @@ IFACE=tap0
 IP4_PREFIX="192.168.110"
 IP6_PREFIX="2001:db8:f00f:cafe::"
 SERVER_NAME="www.httpboot.local"
-HTTPS="TRUE"
 SERVER_KEY="server.pem"
 
 # Generate the other variables 
@@ -54,7 +53,6 @@ sed "s,__IFACE__,$IFACE,g
      s,__SERVER_NAME__,$SERVER_NAME,g
      s,__HTTPBOOT_URI__,$HTTPBOOT_URI,g
      s,__HTTPBOOT6_URI__,$HTTPBOOT6_URI,g
-     s,__HTTPS__,$HTTPS,g
      s,__SERVER_KEY__,$SERVER_KEY,g" env.template > env
 
 echo "Start services for $TARGET"
