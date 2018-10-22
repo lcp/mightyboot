@@ -23,7 +23,6 @@ config files accordingly. Here are the variables:
 * **SERVER_NAME** - the domain name of the server
 * **HTTPBOOT_URI** - the IPv4 HTTP URI to the UEFI bootloader
 * **HTTPBOOT6_URI** - the IPv6 HTTP URI to the UEFI bootloader
-* **HTTPS** - whether to enable HTTPS or not
 * **SERVER_KEY** - the encrypt key for HTTPS
 
 ### Network Interface
@@ -80,10 +79,8 @@ to create a test key if necessary. The server key **must** contain both
 the public certificate and the private key.
 
 After creating the server key, copy the server key file to *data/lighttpd*.
-Then, set **HTTPS** in **env** to **TRUE** and assign the file name of the
-server key to **SERVER_KEY**. For example:
+Then, assign the file name of the server key to **SERVER_KEY**. For example:
 
-    HTTPS=TRUE
     SERVER_KEY=server.pem
 
 ### Grub2
