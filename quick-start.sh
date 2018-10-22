@@ -9,7 +9,14 @@
 #   + data/tftpboot/SLE15/EFI/BOOT/grub.cfg
 #   + data/www/htdocs/SLE15/EFI/BOOT/grub.cfg
 #
-# $ ./quick-start sle15
+# Example:
+#    SLE15 Image for PXE and HTTPBoot:
+#    $ ./quick-start sle15
+#
+#    SLE15 Image for PXE and HTTPSBoot:
+#    $ ./quick-start sle15 httpsboot
+
+PREFIX=http
 
 case "$1" in
 	"sle15")
@@ -34,6 +41,12 @@ case "$1" in
 		;;
 esac
 
+case "$2" in
+	"httpsboot")
+		PREFIX=https
+		;;
+esac
+
 # Modify those variables to match the system settings
 IFACE=tap0
 IP4_PREFIX="192.168.110"
@@ -43,7 +56,7 @@ SERVER_KEY="server.pem"
 
 # Generate the other variables 
 PXE_URI="/$TARGET/EFI/BOOT/$LOADER"
-HTTPBOOT_URI="https://$SERVER_NAME/$TARGET/EFI/BOOT/$LOADER"
+HTTPBOOT_URI="$PREFIX://$SERVER_NAME/$TARGET/EFI/BOOT/$LOADER"
 HTTPBOOT6_URI=$HTTPBOOT_URI
 
 sed "s,__IFACE__,$IFACE,g
