@@ -8,24 +8,24 @@ if [ -z "$IFACE" ]; then
 	exit
 fi
 
-conf_dir="/conf"
-if [ ! -d "$conf_dir" ]; then
-	echo "Please ensure '$conf_dir' folder is available."
-	echo 'If you just want to keep your configuration in "conf/", add -v "$(pwd)/conf:/conf" to the docker run command line.'
+data_dir="/data"
+if [ ! -d "$data_dir" ]; then
+	echo "Please ensure '$data_dir' folder is available."
+	echo 'If you just want to keep your configuration in "data/", add -v "$(pwd)/data:/data" to the docker run command line.'
 	exit 1
 fi
 
 if [ -z "$SERVER_KEY" ]; then
-	lighttpd_conf="$conf_dir/lighttpd-ssl.conf"
+	lighttpd_conf="$data_dir/lighttpd-ssl.conf"
 
-	server_key=$conf_dir/$SERVER_KEY
+	server_key=$data_dir/$SERVER_KEY
 	if [ ! -r "$server_key" ]; then
 		echo "Please ensure '$server_key' exists and is readable"
 		exit 1
 	fi
 	cp $server_key /etc/ssl/private/
 else
-	lighttpd_conf="$conf_dir/lighttpd.conf"
+	lighttpd_conf="$data_dir/lighttpd.conf"
 fi
 if [ ! -r "$lighttpd_conf" ]; then
 	echo "Please ensure '$lighttpd_conf' exists and is readable."

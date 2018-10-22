@@ -23,6 +23,6 @@ services:
                 build: ./lighttpd
                 env_file: ./env
                 volumes:
-                        - ./data/lighttpd/:/conf:ro
+                        - ./data/lighttpd/:/data:ro
                         - ./data/www/htdocs:/srv/www/htdocs:ro
                 network_mode: "host"
