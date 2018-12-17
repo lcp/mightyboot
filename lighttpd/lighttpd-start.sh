@@ -15,7 +15,7 @@ if [ ! -d "$data_dir" ]; then
 	exit 1
 fi
 
-if [ -z "$SERVER_KEY" ]; then
+if [ -n "$SERVER_KEY" ]; then
 	lighttpd_conf="$data_dir/lighttpd-ssl.conf"
 
 	server_key=$data_dir/$SERVER_KEY
