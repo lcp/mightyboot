@@ -3,10 +3,10 @@
 # installation images
 #
 # Before starting the script:
-# - Copy EFI and boot from SLE15 DVD1 to data/tftpboot/SLE15
+# - Copy EFI and boot from SLE15 DVD1 to data/tftproot/SLE15
 # - Copy everything in SLE15 DVD1 to data/www/htdocs/SLE15
 # - Modify data/grub.cfg.example and copy it to
-#   + data/tftpboot/SLE15/EFI/BOOT/grub.cfg
+#   + data/tftproot/SLE15/EFI/BOOT/grub.cfg
 #   + data/www/htdocs/SLE15/EFI/BOOT/grub.cfg
 #
 # Example:
@@ -36,7 +36,7 @@ case "$1" in
 		LOADER="bootaa64.efi"
 		;;
 	*)
-		echo "Unknown Argument: $ARG"
+		echo "Usage $0 <OS>"
 		exit 1
 		;;
 esac
@@ -48,7 +48,7 @@ case "$2" in
 esac
 
 # Modify those variables to match the system settings
-IFACE=tap0
+IFACE=vmbr0
 IP4_PREFIX="192.168.110"
 IP6_PREFIX="2001:db8:f00f:cafe::"
 SERVER_NAME="www.httpboot.local"
