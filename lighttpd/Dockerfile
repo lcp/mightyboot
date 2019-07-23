@@ -1,4 +1,4 @@
-FROM opensuse
+FROM opensuse/leap
 
 RUN zypper in -y lighttpd
 
