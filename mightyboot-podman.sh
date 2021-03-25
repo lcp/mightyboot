@@ -16,9 +16,12 @@ REBUILD=""
 
 function usage()
 {
-	echo "$0: build mightyboot containers with podman"
+	echo "$0: manage mightyboot containers with podman"
 	echo "Usage:"
 	echo "  $0 command (service) "
+	echo ""
+	echo "Services: ${SERVICES}"
+	echo ""
 	echo "Commands:"
 	echo "  start"
 	echo "     start a service or start all services if not specified"
@@ -32,7 +35,8 @@ function usage()
 	echo "  remove"
 	echo "     remove a service or remove all services if not specified"
 	echo ""
-	echo "Services: ${SERVICES}"
+	echo "  status"
+	echo "     print the status of services"
 }
 
 function check_service()
@@ -321,6 +325,17 @@ function cmd_start()
 	done
 }
 
+function cmd_status()
+{
+	for service in ${SERVICES}; do
+		if check_running_container ${service}; then
+			printf "%-8s is running\n" ${service}
+		else
+			printf "%-8s is down\n" ${service}
+		fi
+	done
+}
+
 # Parse the arguments
 case $1 in
 	rebuild)
@@ -334,6 +349,9 @@ case $1 in
 		;;
 	start)
 		cmd_start $2
+		;;
+	status)
+		cmd_status
 		;;
 	*)
 		usage
