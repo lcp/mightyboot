@@ -131,6 +131,7 @@ function create_container_real()
 	esac
 
 	podman create --pod ${POD_NAME} \
+		--network host \
 		--env-file ${ENV_FILE} \
 		--log-driver="${LOG_DRIVER}" \
 		${MOUNT_ARGS} \
