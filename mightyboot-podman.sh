@@ -82,7 +82,7 @@ function check_running_container()
 		echo "unknown service: ${service}"
 		exit 1
 	fi
-	podman container ps --format "{{.Names}}" | grep -q "${POD_NAME}-${service}"
+	podman container ps --format "{{.Names}}" | grep -q "${POD_NAME}-${service}\$"
 }
 
 function mount_arg()
