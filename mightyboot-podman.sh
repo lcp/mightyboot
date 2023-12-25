@@ -106,9 +106,12 @@ function create_container_real()
 		exit 1
 	fi
 
+	local extra_opt=
+
 	case ${service} in
 		"dhcp")
 			MOUNT_ARGS=$(mount_arg ${PWD}/data/dhcp /data n)
+			extra_opt="--privileged"
 			;;
 
 		"dhcp6")
@@ -130,7 +133,7 @@ function create_container_real()
 			;;
 	esac
 
-	podman create --pod ${POD_NAME} \
+	podman create ${extra_opt} --pod ${POD_NAME} \
 		--network host \
 		--env-file ${ENV_FILE} \
 		--log-driver="${LOG_DRIVER}" \
