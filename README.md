@@ -89,11 +89,31 @@ There is a grub.cfg example in *data* in case you need a reference of grub.cfg.
 
 ## Launch Services
 
-Just make sure that your system already installs docker and docker-compose and
-run:
+### Docker
+
+For the docker users, Just make sure that your system already install docker
+and docker-compose and run:
 
     $ docker-compose up
 
 This first startup time will be longer since docker-compose has to download
 and build images for the services. Once the images are cached, it will be much
 faster.
+
+### Podman
+
+For the podman users, `mightyboot-podman.sh` is the script to manage the
+container services. Since podman requires the root privilege to control the
+host network interface, it is necessary to run the script with `sudo`. There
+are 5 subcommands in the script: `start`, `rebuild`, `stop`, `remove`, and
+`status`. To launch the services, just run:
+
+    $ sudo ./mightyboot-podman.sh start
+
+Then the script will build the images (for the first startup) and start
+the services.
+
+All messages from the services are redirected to journald. For example,
+to check the messages from the **DHCP** container:
+
+    $ sudo journalctl --identifier mightyboot-dhcp
