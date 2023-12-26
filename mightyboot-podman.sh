@@ -331,7 +331,14 @@ function cmd_start()
 
 function cmd_status()
 {
-	for service in ${SERVICES}; do
+	# If the service is not specified, start all services.
+	if [ -z "$1" ]; then
+		STATUS_SERVICE=${SERVICES}
+	else
+		STATUS_SERVICE=$1
+	fi
+
+	for service in ${STATUS_SERVICE}; do
 		if check_running_container ${service}; then
 			printf "%-8s is running\n" ${service}
 		else
@@ -355,7 +362,7 @@ case $1 in
 		cmd_start $2
 		;;
 	status)
-		cmd_status
+		cmd_status $2
 		;;
 	*)
 		usage
